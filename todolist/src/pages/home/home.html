@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title class="title">
+            To Do List
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <div class="explain-text">请输入待办事项</div>
+    <ion-item>
+        <ion-label>日期：</ion-label>
+        <ion-datetime displayFormat="YYYY-M-D" pickerFormat="YYYY-M-D" cancelText="取消" doneText="确定" [(ngModel)]="date" class="user-input"></ion-datetime>
+    </ion-item>
+    <ion-item>
+        <ion-label>事项：</ion-label>
+        <ion-input [(ngModel)]="thing" class="user-input"></ion-input>
+    </ion-item>
+    <button ion-button class="add-button" (click)="addThing()">添加</button>
+    <div class="explain-text">待办事项列表（向左滑可删除）</div>
+    <ion-list>
+        <ion-item-sliding *ngFor="let item of things">
+            <ion-item>
+                <ion-label class="user-input">{{item.date}}</ion-label>
+                <div item-content class="user-input">{{item.thing}}</div>
+            </ion-item>
+            <ion-item-options side="right">
+                <button ion-button color="primary" (click)="deleteThing(item)">
+                <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+                删除
+              </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>
